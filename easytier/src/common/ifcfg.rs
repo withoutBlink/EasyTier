@@ -6,7 +6,7 @@ use tokio::process::Command;
 use super::error::Error;
 
 #[async_trait]
-pub trait IfConfiguerTrait: Send + Sync {
+pub trait IfConfigureTrait: Send + Sync {
     async fn add_ipv4_route(
         &self,
         _name: &str,
@@ -98,7 +98,7 @@ async fn run_shell_cmd(cmd: &str) -> Result<(), Error> {
 
 pub struct MacIfConfiger {}
 #[async_trait]
-impl IfConfiguerTrait for MacIfConfiger {
+impl IfConfigureTrait for MacIfConfiger {
     async fn add_ipv4_route(
         &self,
         name: &str,
@@ -174,7 +174,7 @@ impl IfConfiguerTrait for MacIfConfiger {
 
 pub struct LinuxIfConfiger {}
 #[async_trait]
-impl IfConfiguerTrait for LinuxIfConfiger {
+impl IfConfigureTrait for LinuxIfConfiger {
     async fn add_ipv4_route(
         &self,
         name: &str,
@@ -283,7 +283,7 @@ impl WindowsIfConfiger {
 
 #[cfg(target_os = "windows")]
 #[async_trait]
-impl IfConfiguerTrait for WindowsIfConfiger {
+impl IfConfigureTrait for WindowsIfConfiger {
     async fn add_ipv4_route(
         &self,
         name: &str,
@@ -393,7 +393,7 @@ impl IfConfiguerTrait for WindowsIfConfiger {
 
 pub struct DummyIfConfiger {}
 #[async_trait]
-impl IfConfiguerTrait for DummyIfConfiger {}
+impl IfConfigureTrait for DummyIfConfiger {}
 
 #[cfg(target_os = "macos")]
 pub type IfConfiger = MacIfConfiger;

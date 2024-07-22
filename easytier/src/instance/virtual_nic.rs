@@ -10,7 +10,7 @@ use crate::{
     common::{
         error::Error,
         global_ctx::{ArcGlobalCtx, GlobalCtxEvent},
-        ifcfg::{IfConfiger, IfConfiguerTrait},
+        ifcfg::{IfConfiger, IfConfigureTrait},
     },
     peers::{peer_manager::PeerManager, PacketRecvChanReceiver},
     tunnel::{
@@ -243,7 +243,7 @@ pub struct VirtualNic {
     global_ctx: ArcGlobalCtx,
 
     ifname: Option<String>,
-    ifcfg: Box<dyn IfConfiguerTrait + Send + Sync + 'static>,
+    ifcfg: Box<dyn IfConfigureTrait + Send + Sync + 'static>,
 }
 
 impl VirtualNic {
@@ -415,7 +415,7 @@ impl VirtualNic {
         Ok(())
     }
 
-    pub fn get_ifcfg(&self) -> impl IfConfiguerTrait {
+    pub fn get_ifcfg(&self) -> impl IfConfigureTrait {
         IfConfiger {}
     }
 }
